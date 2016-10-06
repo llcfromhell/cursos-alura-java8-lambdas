@@ -27,6 +27,12 @@ public class OrdenaStrings {
 		// passa uma função para consumir cada elemento
 		palavras.forEach(new ConsumidorDeString());
 
+		// java 8 - lambda
+		palavras.forEach(s -> System.out.println(s));
+		
+		// java 8 - lambda com reference method
+		palavras.forEach(System.out::println);
+		
 		// criando um consumidor anonimo
 		palavras.forEach( new Consumer<String>() {
 			public void accept(String t) {
@@ -42,6 +48,10 @@ public class OrdenaStrings {
 		palavras.forEach( s -> System.out.println(s) );
 		
 		new Thread(() -> System.out.println("Executando um Runnable")).start();
+		
+		palavras.sort(Comparator.comparing(String::length));
+		
+		palavras.sort(String.CASE_INSENSITIVE_ORDER);
 		
 	}
 
