@@ -3,6 +3,7 @@ package br.com.alura.cursos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FiltroDeCursos {
@@ -30,11 +31,25 @@ public class FiltroDeCursos {
 //		   .map(c -> c.getAlunos())
 //		   .forEach(x -> System.out.println(x));
 		
-		
 		cursos.stream()
 		   .filter(c -> c.getAlunos() > 50)
 		   .map(Curso::getNome)
 		   .forEach(System.out::println);
+		
+		// filtra e pega o primeiro, se tive, imprime
+		cursos.stream()
+		   .filter(c -> c.getAlunos() > 50)
+		   .findFirst()
+		   .ifPresent(System.out::println);
+		
+		cursos.stream()
+			.mapToInt(Curso::getAlunos)
+			.average()
+			.ifPresent(System.out::println);
+		
+		List<Curso> cursoList = cursos.stream()
+				.filter(c -> c.getAlunos() > 50)
+				.collect(Collectors.toList());
 		
 	}
 	
