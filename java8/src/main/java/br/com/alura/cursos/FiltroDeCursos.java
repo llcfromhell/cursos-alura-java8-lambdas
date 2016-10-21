@@ -20,7 +20,10 @@ public class FiltroDeCursos {
 		
 		cursos.forEach(System.out::println);
 		
-		cursos.stream().filter(c -> (c.getAlunos() > 50)).forEach(System.out::println);
+		// filtra conforme a função (predicado) dada = nro alunos maior que 50
+		cursos.stream()
+			.filter(c -> (c.getAlunos() > 50))
+			.forEach(System.out::println);
 		
 		Stream<String> nomes = cursos.stream().map(Curso::getNome);
 		nomes.forEach(System.out::println);
@@ -42,11 +45,13 @@ public class FiltroDeCursos {
 		   .findFirst()
 		   .ifPresent(System.out::println);
 		
+		// encontra a média de valores inteiros
 		cursos.stream()
 			.mapToInt(Curso::getAlunos)
 			.average()
 			.ifPresent(System.out::println);
 		
+		// converte para listas
 		List<Curso> cursoList = cursos.stream()
 				.filter(c -> c.getAlunos() > 50)
 				.collect(Collectors.toList());
